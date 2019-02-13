@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: workload
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+      - name: load
+        image: maho/testwkld:0.1
+        resources:
+          requests:
+            memory: "100Mi"
+            cpu: "300m"
+          limits:
+            memory: "100Mi"
+            cpu: "400m"
